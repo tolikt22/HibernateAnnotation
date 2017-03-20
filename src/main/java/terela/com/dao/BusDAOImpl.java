@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class BusDAOImpl implements BusDAO {
     public void addBus(Bus bus) throws SQLException {
         Session session = null;
@@ -21,8 +20,8 @@ public class BusDAOImpl implements BusDAO {
             e.printStackTrace();
         } finally {
             if (session != null && session.isOpen()) {
-
-                session.close();
+//                session.close();
+                session.getSessionFactory().close();
             }
         }
     }
@@ -38,7 +37,8 @@ public class BusDAOImpl implements BusDAO {
             e.printStackTrace();
         } finally {
             if (session != null && session.isOpen()) {
-                session.close();
+//                session.close();
+                HibernateUtil.shutDown();
             }
         }
     }
